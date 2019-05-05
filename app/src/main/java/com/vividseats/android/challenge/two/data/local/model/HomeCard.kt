@@ -1,4 +1,4 @@
-package com.vividseats.android.challenge.two.data
+package com.vividseats.android.challenge.two.data.local.model
 
 
 data class HomeCard(var topLabel : String,
