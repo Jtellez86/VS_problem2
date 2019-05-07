@@ -24,18 +24,18 @@ class MainViewModel @Inject constructor(
         compositeDisposable.clear()
 
         homeCardRepository.getHomeCards()
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe { resource ->
-//                println(resource)
-//                when(resource.status) {
-//                    Status.LOADING -> null
-//                    Status.SUCCESS -> {
-//                        presentationData.postValue(Presentation(getApplication(), resource.data))
-//                    }
-//                }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { resource ->
+                println(resource)
+                when(resource.status) {
+                    Status.LOADING -> null
+                    Status.SUCCESS -> {
+                        presentationData.postValue(Presentation(getApplication(), resource.data))
+                    }
+                }
 
-//            }.addTo(compositeDisposable)
+            }.addTo(compositeDisposable)
     }
 
     data class Presentation(private val context: Context,
