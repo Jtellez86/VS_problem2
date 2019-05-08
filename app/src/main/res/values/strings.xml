@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">VividSeats Coding Challenge Two</string>
+    <string name="event_image_content_description">Event Image</string>
 </resources>

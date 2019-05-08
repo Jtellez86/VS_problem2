@@ -1,40 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardBackgroundColor="@color/colorPrimary"
-    app:cardElevation="@dimen/elevation_card"
-    app:contentPadding="@dimen/spacing_medium"
-    >
+    app:cardElevation="@dimen/elevation_card">
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/homeCardImageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/event_image_content_description" />
 
         <TextView
-            android:id="@+id/titleTextView"
-            style="@style/TextView.Title.Dark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Title"/>
-
+            android:id="@+id/topLabelTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/spacing_xxsmall"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/text_subtitle"/>
         <TextView
-            style="@style/TextView.Subheader.Dark"
-            android:id="@+id/subtitleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="SubTitle"
-            />
+            android:id="@+id/middleLabelTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/spacing_xxsmall"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/text_subtitle"/>
 
-    </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+    <!--<android.support.constraint.ConstraintLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/homeCardImageView"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/titleTextView"-->
+            <!--style="@style/TextView.Title.Dark"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/homeCardImageView"-->
+            <!--tools:text="Title"/>-->
+
+        <!--<TextView-->
+            <!--style="@style/TextView.Subheader.Dark"-->
+            <!--android:id="@+id/subtitleTextView"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/titleTextView"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--tools:text="SubTitle"-->
+            <!--/>-->
+
+    <!--</android.support.constraint.ConstraintLayout>-->
 
 </android.support.v7.widget.CardView>

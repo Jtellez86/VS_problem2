@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import com.vividseats.android.challenge.two.R
 import com.vividseats.android.challenge.two.data.local.model.HomeCard
 import com.vividseats.android.challenge.two.ui.main.HomeCardsListAdapter.ViewData
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeCardsListAdapter : ListAdapter<ViewData, HomeCardViewHolder>(
         object : DiffUtil.ItemCallback<ViewData>() {
@@ -54,7 +56,7 @@ class HomeCardsListAdapter : ListAdapter<ViewData, HomeCardViewHolder>(
 
         if(models.isNotEmpty()){
             models.forEach {model ->
-                dataSet.add(ViewData(model.topLabel.hashCode().toLong(), model))
+                dataSet.add(ViewData(UUID.randomUUID().leastSignificantBits, model))
             }
         }
 

@@ -45,7 +45,10 @@ class MainActivity : AppCompatActivity() {
         viewModel.presentationData.observeNonNull(this) { presentation ->
             listAdapter.submitModels(presentation.homeCards!!)
         }
+    }
 
+    override fun onStart() {
+        super.onStart()
         viewModel.getHomeCards()
     }
 }
