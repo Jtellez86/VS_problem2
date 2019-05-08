@@ -5,4 +5,19 @@
     <color name="colorAccent">#888888</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="window_background_cards">#e5e5e5</color>
+
+
+    <!-- Dark text colors https://material.io/guidelines/style/color.html#color-usability-->
+    <color name="icon_dark_primary">#000000</color> <!--100% opacity (primary icons) -->
+    <color name="text_dark_primary">#000000</color> <!--100% opacity (title) -->
+    <color name="text_dark_secondary">#99000000</color> <!--60% opacity (subtitle) -->
+    <color name="text_dark_tertiary">#61000000</color> <!--38% opacity (disabled, hint) -->
+    <color name="list_divider_dark">#26000000</color> <!--15% opacity (divider) -->
+
+    <!-- Light text colors https://material.io/guidelines/style/color.html#color-usability-->
+    <color name="icon_light_primary">#ffffff</color> <!--100% opacity (primary icons) -->
+    <color name="text_light_primary">#ffffff</color> <!--100% opacity (title) -->
+    <color name="text_light_secondary">#b2ffffff</color> <!--70% opacity (subtitle) -->
+    <color name="text_light_tertiary">#80ffffff</color> <!--50% opacity (disabled, hint) -->
 </resources>

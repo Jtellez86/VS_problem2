@@ -19,7 +19,7 @@ class MainViewModel @Inject constructor(
 
     val presentationData = MutableLiveData<Presentation>()
 
-    fun bind() {
+    fun getHomeCards() {
         //this is to ensure only one stream is active at a time
         compositeDisposable.clear()
 
@@ -39,7 +39,5 @@ class MainViewModel @Inject constructor(
     }
 
     data class Presentation(private val context: Context,
-                            private val homeCards: List<HomeCard>?) {
-
-    }
+                            val homeCards: List<HomeCard>?)
 }
