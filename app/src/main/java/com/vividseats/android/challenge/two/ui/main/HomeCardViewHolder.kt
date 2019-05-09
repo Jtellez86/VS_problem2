@@ -11,6 +11,7 @@ class HomeCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         Picasso.get().load(model.image).fit().into(itemView.homeCardImageView)
         itemView.topLabelTextView.text = model.topLabel
         itemView.middleLabelTextView.text =  model.middleLabel
+        itemView.dateLabelTextView.text = model.bottomLabel
     }
 
 }

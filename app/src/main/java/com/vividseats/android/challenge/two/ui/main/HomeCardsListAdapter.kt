@@ -23,27 +23,18 @@ class HomeCardsListAdapter : ListAdapter<ViewData, HomeCardViewHolder>(
                     newViewData: ViewData
             ): Boolean =
                     oldViewData.content == newViewData.content
-
-            override fun getChangePayload(
-                    oldViewData: ViewData,
-                    newViewData: ViewData
-            ): Any? = newViewData
         }) {
 
     data class ViewData(
             val id: Long,
-            val content: Any)
+            val content: HomeCard)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeCardViewHolder {
         return HomeCardViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_home_card, parent, false))
     }
 
     override fun onBindViewHolder(holder: HomeCardViewHolder, position: Int) {
-        holder.bind(getItem(position).content as HomeCard)
-    }
-
-    init {
-        this.setHasStableIds(true)
+        holder.bind(getItem(position).content)
     }
 
     fun submitModels(models: List<HomeCard>) {

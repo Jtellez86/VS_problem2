@@ -14,6 +14,7 @@ class HomeCardRepository(private val remoteApi: HomeCardsAPI) {
 
     fun getHomeCards(): Observable<Resource<List<HomeCard>>> {
         return Observable.create<Resource<List<HomeCard>>> { emitter ->
+            emitter.onNext(Resource.Loading(null))
             remoteApi.getHomeCards(HomeCardRequest()).enqueue(object : Callback<List<HomeCard>> {
                 override fun onResponse(call: Call<List<HomeCard>>, response: Response<List<HomeCard>>) {
                     response.body()?.let { responseBody ->

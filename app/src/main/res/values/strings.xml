@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">VividSeats Coding Challenge Two</string>
     <string name="event_image_content_description">Event Image</string>
+    <string name="error_message">Whoops, something went wrong</string>
 </resources>

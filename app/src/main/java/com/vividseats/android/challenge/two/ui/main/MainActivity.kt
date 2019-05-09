@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
+import android.widget.Toast
 import com.vividseats.android.challenge.two.R
 import com.vividseats.android.challenge.two.ui.decoration.OffsetItemDecoration
 import com.vividseats.android.challenge.two.ui.util.observeNonNull
@@ -15,20 +17,23 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    @Inject lateinit var listAdapter: HomeCardsListAdapter
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var listAdapter: HomeCardsListAdapter
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: MainViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView.layoutManager = LinearLayoutManager(applicationContext)
         rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.window_background_cards))
 
         recyclerView.apply {
+            layoutManager = LinearLayoutManager(applicationContext)
             addItemDecoration(
                     OffsetItemDecoration(
                             resources.getDimensionPixelSize(R.dimen.spacing_small),
@@ -42,9 +47,25 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
 
+        viewModel.errorEvent.observeNonNull(this) { errorMessage ->
+            Log.e(this.javaClass.simpleName, errorMessage)
+            refreshLayout.isRefreshing = false
+            Toast.makeText(this, getString(R.string.error_message), Toast.LENGTH_LONG).show()
+        }
+
         viewModel.presentationData.observeNonNull(this) { presentation ->
+            refreshLayout.isRefreshing = false
             listAdapter.submitModels(presentation.homeCards!!)
         }
+
+        refreshLayout.apply outer@{
+            setColorSchemeColors(ContextCompat.getColor(this@MainActivity , R.color.colorPrimary))
+            setOnRefreshListener {
+                viewModel.getHomeCards()
+            }
+        }
+
+
     }
 
     override fun onStart() {

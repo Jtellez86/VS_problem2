@@ -7,6 +7,7 @@ import com.vividseats.android.challenge.two.data.local.model.HomeCard
 import com.vividseats.android.challenge.two.data.remote.core.Status
 import com.vividseats.android.challenge.two.data.repository.HomeCardRepository
 import com.vividseats.android.challenge.two.ui.core.BaseViewModel
+import com.vividseats.android.challenge.two.ui.core.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
@@ -18,6 +19,7 @@ class MainViewModel @Inject constructor(
     private val homeCardRepository: HomeCardRepository) : BaseViewModel(application) {
 
     val presentationData = MutableLiveData<Presentation>()
+    val errorEvent = SingleLiveEvent<String>()
 
     fun getHomeCards() {
         //this is to ensure only one stream is active at a time
@@ -26,16 +28,18 @@ class MainViewModel @Inject constructor(
         homeCardRepository.getHomeCards()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { resource ->
-                println(resource)
-                when(resource.status) {
-                    Status.LOADING -> null
+            .subscribe({ resource ->
+                when (resource.status) {
                     Status.SUCCESS -> {
-                        presentationData.postValue(Presentation(getApplication(), resource.data))
+                        presentationData.postValue(Presentation(getApplication(),
+                                resource.data!!.sortedBy { homeCard -> homeCard.rank }))
                     }
+                    else -> null
                 }
 
-            }.addTo(compositeDisposable)
+            }, {throwable ->
+                errorEvent.value = throwable.message
+            }).addTo(compositeDisposable)
     }
 
     data class Presentation(private val context: Context,
