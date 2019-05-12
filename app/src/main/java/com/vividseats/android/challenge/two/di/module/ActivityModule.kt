@@ -9,4 +9,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityModule {
     @ActivityScope @ContributesAndroidInjector
     abstract fun contributeMainActivityInjector(): MainActivity
+
+    @ActivityScope @ContributesAndroidInjector
+    abstract fun contributeHomeCardActivityActivityInjector(): HomeCardDetailActivity
 }

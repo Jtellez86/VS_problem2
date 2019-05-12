@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             listAdapter.submitModels(presentation.homeCards!!)
         }
 
-        refreshLayout.apply outer@{
+        refreshLayout.apply {
             setColorSchemeColors(ContextCompat.getColor(this@MainActivity , R.color.colorPrimary))
             setOnRefreshListener {
                 viewModel.getHomeCards()
